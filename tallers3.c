@@ -29,24 +29,28 @@ do{
             case 1:
                 printf("Ingrese número de estudiantes: ");
                 scanf("%d", &estudiantes);
+                getchar();
                 if (estudiantes > max_estudiantes) {
                     printf("Número de estudiantes excede el límite (%d). Intente nuevamente desde el principio.\n", max_estudiantes);
                     break;
                 }
                 for (int i = 0; i < estudiantes; i++) {
                     printf("Nombre del estudiante %d: ", i + 1);
-                    scanf("%s", nombres[i]);
+                    fgets(nombres[i], sizeof(nombres[i]), stdin);
+                    nombres[i][strcspn(nombres[i], "\n")] = '\0';
                 }
 
                 printf("Ingrese número de asignaturas: ");
                 scanf("%d", &asignaturas);
+                getchar();
                 if (asignaturas > max_asignaturas) {
                     printf("Número de asignaturas excede el límite (%d). Intente nuevamente desde el principio.\n", max_asignaturas);
                     break;
                 }
                 for (int i = 0; i < asignaturas; i++) {
                     printf("Nombre de la materia %d: ", i + 1);
-                    scanf("%s", materias[i]);
+                    fgets(materias[i], sizeof(materias[i]), stdin);
+                    materias[i][strcspn(materias[i], "\n")] = '\0';
                 }
                 break;
 
