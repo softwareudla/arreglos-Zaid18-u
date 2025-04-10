@@ -17,7 +17,8 @@ do{
         printf("1. Registrar estudiantes y materias\n");
         printf("2. Ingresar calificaciones\n");
         printf("3. Mostrar resultados por materia\n");
-        printf("4. Salir\n");
+        printf("4. Mostrar resultados por estudiante.\n");
+        printf("5. Salir\n");
         printf("Seleccione una opción: ");
         check = scanf("%d", &opcion);
         if(check != 1){
@@ -105,15 +106,29 @@ do{
                     printf("Estudiantes aprobados: %d\n", aprobados);
                 }
                 break;
-
             case 4:
+                if (!calificaciones_ingresadas) {
+                    printf("Debe ingresar calificaciones antes de ver los resultados.\n");
+                    break;
+                }
+
+                for (int i = 0; i < estudiantes; i++) {
+                    float suma = 0;
+                    for (int j = 0; j < asignaturas; j++) {
+                        suma += calificaciones[i][j];
+                    }
+                    printf("\nEstudiante: %s\n", nombres[i]);
+                    printf("Promedio: %.2f\n", suma / asignaturas);
+                }
+                break;
+            case 5:
                 printf("Saliendo del programa...\n");
                 break;
 
             default:
                 printf("Opción no válida.\n");
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
 
     return 0;
 }
